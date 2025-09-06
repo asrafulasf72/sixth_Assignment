@@ -27,7 +27,10 @@
         <li><a>Plant a Tree</a></li>
       </ul>
     </div>
-    <a class="btn btn-ghost text-xl md:ml-12 text-white font-semibold">Green Earth</a>
+    <div class="flex md:ml-12">
+      <img class="w-8" src="./assets/green_earth_seeding.png" alt="">
+      <a class="btn btn-ghost text-xl text-white font-semibold">Green Earth</a>
+    </div>
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
@@ -58,6 +61,41 @@
                 </div>
 
               </div>
+         </section>
+
+         <section class="w-11/12 mx-auto my-10">
+            <h1 class="text-center text-[2rem] font-semibold">Choose Your Trees</h1>
+               <div class="grid grid-cols-12 gap-3 my-3">
+                  <div class="category-link col-span-2">
+                          <h2 class="text-[1.2rem] font-medium">Categories</h2>
+                       <ul class="my-1.5">
+                            <li class="hover:bg-green-400 rounded-[0.3rem] p-1.5 cursor-pointer text-center">Fruits Tree</li>
+                       </ul>
+                  </div>
+  
+                  <div class="card-container col-span-8 grid grid-cols-3 gap-3">
+                      <div class="bg-white rounded-[6px] space-y-3 shadow-sm">
+                          <div class="">
+                             <img class="w-full h-40" src="./assets/about.png" alt="">
+                          </div>
+                          <div class="px-4">
+                              <h2 class="text-2xl font-bold">Mango Tree</h2>
+                              <p class="text-[1rem] font-medium">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi facere....</p>
+                          </div>
+                          <div class=" flex justify-between px-4">
+                             <button class="bg-green-200 rounded-[6px] p-1">Fruite Tree</button>
+                             <p>$<span>200</span></p>
+                          </div>
+                          <div class="px-4 pb-2">
+                             <button class="bg-green-700 p-2 rounded-3xl w-full text-[1rem] text-white font-medium">Add to cart</button>
+                          </div>
+                      </div> 
+                  </div>
+  
+                  <div class="cart-aside bg-white col-span-2 rounded-xl">
+                        <h1 class=" p-1.5 text-[1.2rem] font-semibold">Your Cart</h1>
+                  </div>
+               </div>
          </section>
          
       </main>
