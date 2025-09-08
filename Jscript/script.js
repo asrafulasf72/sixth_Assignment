@@ -87,7 +87,7 @@ const loadTreeCategory =(plantsId)=>{
    allPlanttreeContainer.innerHTML=""
    plantsId.forEach(plantId=>{
       allPlanttreeContainer.innerHTML+=`
-             <div class="Cart bg-white rounded-[6px] space-y-3 shadow-sm">
+             <div class=" bg-white rounded-[6px] space-y-3 shadow-sm">
                           <div class="">
                              <img class=" w-full h-[186px] rounded-t-[6px]" src="${plantId.image}" alt="">
                           </div>
@@ -100,7 +100,7 @@ const loadTreeCategory =(plantsId)=>{
                              <p><i class="fa-solid fa-bangladeshi-taka-sign font-light"></i><span class="font-semibold">${plantId.price}</span></p>
                           </div>
                           <div class="px-4">
-                             <button class="a bg-green-700 p-2 rounded-3xl w-full text-[1rem] text-white font-medium ">Add to cart</button>
+                             <button class=" bg-green-700 p-2 rounded-3xl w-full text-[1rem] text-white font-medium ">Add to cart</button>
                           </div>
                       </div>
       
