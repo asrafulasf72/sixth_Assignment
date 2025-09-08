@@ -12,6 +12,8 @@ const loadaCategoriesContainer= async()=>{
         
 };
 
+loadaCategoriesContainer();
+
 const DispalyCategories=(categories)=>{
      categories.forEach(categorie=>{
         categoriesContainer.innerHTML+=`
@@ -20,12 +22,13 @@ const DispalyCategories=(categories)=>{
      })
 
      categoriesContainer.addEventListener('click', (e)=>{
-       const alllistItem=document.querySelectorAll('li')
+       const alllistItem=document.querySelectorAll("li")
         alllistItem.forEach(li=>{
            li.classList.remove('active')
         })
-          if(e.target.localName=='li'){
+          if(e.target.localName ==='li'){
              e.target.classList.add('active')
+             loadTreeCategorieById(e.target.id)
           }
      })
 }
@@ -38,12 +41,15 @@ const loadAllPlanttree= async()=>{
    displayPlantsTree(allPlants);
 };
 
+loadAllPlanttree();
+
 const displayPlantsTree=(plants)=>{
+   allPlanttreeContainer.innerHTML=""
       plants.forEach(plant =>{
         allPlanttreeContainer.innerHTML += `
               <div class="bg-white rounded-[6px] space-y-3 shadow-sm">
                           <div class="">
-                             <img class=" w-full h-48 " src="${plant.image}" alt="">
+                             <img class=" w-full h-[186px] rounded-t-[6px]" src="${plant.image}" alt="">
                           </div>
                           <div class="px-4">
                               <h2 class="text-2xl font-bold">${plant.name}</h2>
@@ -51,7 +57,7 @@ const displayPlantsTree=(plants)=>{
                           </div>
                           <div class=" flex justify-between px-4">
                              <button class="bg-green-200 rounded-[6px] p-1">${plant.category}</button>
-                             <p>$<span>${plant.price}</span></p>
+                             <p><i class="fa-solid fa-bangladeshi-taka-sign font-light"></i><span class="font-semibold">${plant.price}</span></p>
                           </div>
                           <div class="px-4">
                              <button class="bg-green-700 p-2 rounded-3xl w-full text-[1rem] text-white font-medium mb-2">Add to cart</button>
@@ -62,12 +68,44 @@ const displayPlantsTree=(plants)=>{
       })
 }
 
-const loadCategories=(id)=>{
-   const url=`https://openapi.programming-hero.com/api/category/${id}`
-   fetch(url)
-   .then(res => res.json())
-   .then(data => console.log(data.category_name))
+const loadTreeCategorieById=(Categoryid)=>{
+     const url=`https://openapi.programming-hero.com/api/category/${Categoryid}`
+     fetch(url)
+     .then((res)=>res.json())
+     .then(data => {
+      const PlantCategory=data.plants
+      loadTreeCategory(PlantCategory)
+
+     })
+     .catch(err=>{
+        console.log(err)
+     })
 }
 
-loadaCategoriesContainer();
-loadAllPlanttree();
+const loadTreeCategory =(plantsId)=>{
+   allPlanttreeContainer.innerHTML=""
+   plantsId.forEach(plantId=>{
+      allPlanttreeContainer.innerHTML+=`
+             <div class="bg-white rounded-[6px] space-y-3 shadow-sm">
+                          <div class="">
+                             <img class=" w-full h-[186px] rounded-t-[6px]" src="${plantId.image}" alt="">
+                          </div>
+                          <div class="px-4">
+                              <h2 class="text-2xl font-bold">${plantId.name}</h2>
+                              <p class="text-[1rem] font-medium">${plantId.description}</p>
+                          </div>
+                          <div class=" flex justify-between px-4">
+                             <button class="bg-green-200 rounded-[6px] p-1">${plantId.category}</button>
+                             <p><i class="fa-solid fa-bangladeshi-taka-sign font-light"></i><span class="font-semibold">${plantId.price}</span></p>
+                          </div>
+                          <div class="px-4">
+                             <button class="bg-green-700 p-2 rounded-3xl w-full text-[1rem] text-white font-medium ">Add to cart</button>
+                          </div>
+                      </div>
+      
+      
+      `
+   })
+}
+
+

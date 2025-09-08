@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Green Earth</title>
-     <link rel="shortcut icon" href="./assets/about.png" type="image/x-icon">
+     <link rel="shortcut icon" href="./assets/green_earth_seeding.png" type="image/x-icon">
     <!-- Tailwind CSS & DaisyUI CDN -->
      <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+     <!-- Font Awesome CDN -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
      <link rel="stylesheet" href="./style.css">
 </head>
@@ -69,7 +72,7 @@
                   <div class="category-link col-span-2">
                           <h2 class="text-[1.2rem] font-medium">Categories</h2>
                        <ul id="categories-container" class="my-1.5 flex flex-col gap-2" >
-                          <li id="btnAlltree" class="hover:bg-green-400 rounded-[0.3rem] p-1.5 cursor-pointer active">All Trees</li>   
+                          <li onclick="loadAllPlanttree()" class="hover:bg-green-400 rounded-[0.3rem] p-1.5 cursor-pointer active">All Trees</li>   
                        </ul>
                   </div>
   
@@ -89,7 +92,7 @@
 
            <div class="flex flex-col md:flex-row gap-5 justify-center items-center mt-3">
               <div class=" flex-1">
-                   <img class="rounded-2xl" src="./assets/about.png" alt="">
+                   <img class="rounded-2xl " src="./assets/about.png" alt="">
               </div>
               <div class=" flex-1 space-y-5">
                  <div>
