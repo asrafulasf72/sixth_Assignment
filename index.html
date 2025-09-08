@@ -89,7 +89,7 @@
 
            <div class="flex flex-col md:flex-row gap-5 justify-center items-center mt-3">
               <div class=" flex-1">
-                   <img src="./assets/about.png" alt="">
+                   <img class="rounded-2xl" src="./assets/about.png" alt="">
               </div>
               <div class=" flex-1 space-y-5">
                  <div>
@@ -134,15 +134,27 @@
              </div>
          </section>
 
-         <section class="bg-green-700">
-                 <div class="flex justify-center items-center p-6">
-                    <h1>Plant a Tree Today</h1>
+         <section class="bg-[#166534]">
+                 <div class="flex flex-col justify-center items-center p-8">
+                    <h1 class="text-[2rem] text-white font-medium mt-8">Plant a Tree Today</h1>
+
+                    <div class="bg-[#15803d] p-5 md:w-4/12 mx-auto rounded-[0.8rem] my-8">
+                       <form class="flex flex-col gap-4 justify-center items-center">
+                           <input class="md:w-full p-1.5 bg-white rounded-[0.5rem] border-none" type="text" placeholder="Your Name">
+                           <input class="md:w-full p-1.5 bg-white rounded-[0.5rem] border-none" type="email" placeholder="Your Email Address">
+                          <select class="w-[100%] md:w-full p-1.5 bg-white rounded-[0.5rem] border-none" name="" id="">
+                              <option value="">Number Of Trees</option>
+                              <option value="">Number Of Plant</option>
+                          </select>
+                       </form>
+                       <button class="w-[100%] md:w-full p-1.5 bg-[#facc15] text-[#15803d] rounded-3xl mt-4">Donate Now</button>
+                    </div>
                  </div>
          </section>
 
-         <footer class="bg-green-800">
+         <footer class="bg-[#14532d]">
              <div class=" flex justify-center items-center">
-                 <p class="text-[0.8rem] text-white text-center">© 2025 Green Earth. All Rights Reserved.</p>
+                 <p class="text-[0.8rem] text-white text-center p-5">© 2025 Green Earth. All Rights Reserved.</p>
              </div>
          </footer>
          
