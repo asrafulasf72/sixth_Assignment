@@ -7,6 +7,7 @@ const loadaCategoriesContainer= async()=>{
        const res= await fetch(url)
        const data= await res.json();
        const allCategories=data.categories;
+      //  console.log(allCategories)
        DispalyCategories(allCategories);
         
 };
@@ -14,8 +15,18 @@ const loadaCategoriesContainer= async()=>{
 const DispalyCategories=(categories)=>{
      categories.forEach(categorie=>{
         categoriesContainer.innerHTML+=`
-          <li onclick="loadCategories(${categorie.category_name})" class="hover:bg-green-400 rounded-[0.3rem] p-1.5 cursor-pointer ">${categorie.category_name}</li>
+          <li id="${categorie.id}" class="hover:bg-green-400 rounded-[0.3rem] p-1.5 cursor-pointer ">${categorie.category_name}</li>
         `
+     })
+
+     categoriesContainer.addEventListener('click', (e)=>{
+       const alllistItem=document.querySelectorAll('li')
+        alllistItem.forEach(li=>{
+           li.classList.remove('active')
+        })
+          if(e.target.localName=='li'){
+             e.target.classList.add('active')
+          }
      })
 }
 
