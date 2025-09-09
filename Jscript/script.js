@@ -1,6 +1,7 @@
 const categoriesContainer=document.getElementById("categories-container")
 const allPlanttreeContainer=document.getElementById("card-container")
 const cartContainer=document.getElementById("cart-container")
+const totalPriceContainer = document.getElementById("total-Price-Container")
 let CartArr= [];
 
 const loadaCategoriesContainer= async()=>{
@@ -120,34 +121,61 @@ allPlanttreeContainer.addEventListener('click', (e) => {
 
 const yourCartHandler=(e)=>{
        const cartName=e.target.parentNode.parentNode.children[1].children[0].innerText
-        const cartPrice=e.target.parentNode.parentNode.children[2].children[1].innerText
+        const cartPrice=parseInt(e.target.parentNode.parentNode.children[2].children[1].innerText);
 
-        CartArr.push({
-           name:cartName,
-           price:cartPrice
-        })
+        const existingItem= CartArr.find(item=>item.name === cartName);
+
+        if(existingItem){
+          existingItem.quantity +=1;
+        }else{
+          CartArr.push({
+            name:cartName,
+            price:cartPrice,
+            quantity: 1
+          })
+        }
         alert(cartName + " has been added to the cart")
     displayYourCart(CartArr)
 }
 
 
 const displayYourCart=(CartArr)=>{
-   cartContainer.innerHTML=""
+   cartContainer.innerHTML="";
+   let total=0;
      CartArr.forEach((cart, index)=>{
+
+      const newTotal=cart.price*cart.quantity;
+         total+=newTotal;
       cartContainer.innerHTML+=`
              <div class="bg-[#cff0dc] rounded-xl p-2 my-2 flex justify-between items-center">
                                 <div>
                                       <h1 class="text-[1rem] font-medium">${cart.name}</h1>
-                                 <p><i class="fa-solid fa-bangladeshi-taka-sign font-light"></i>${cart.price}</p>
+                                 <p><i class="fa-solid fa-bangladeshi-taka-sign font-light"></i>${cart.price} x ${cart.quantity}=${newTotal}</p>
                                 </div>
                                 <button onclick="removeYourCart(${index})"><i class="fa-solid fa-xmark"></i></button>
                              </div>
       
       `
      })
+     if(CartArr.length>0){
+      totalPriceContainer.innerHTML=""
+  totalPriceContainer.innerHTML+=`
+        <div class="bg-gray-100 rounded-xl p-2 my-2 text-center font-semibold">
+        <p>Total: <i class="fa-solid fa-bangladeshi-taka-sign"></i> ${total}</p>
+      </div>
+   `
+}else{
+   totalPriceContainer.innerHTML=""
 }
+};
+
 
 const removeYourCart=(index)=>{
-     CartArr.splice(index,1);
+   if(CartArr[index].quantity>1){
+      CartArr[index].quantity-=1;
+   }else{
+      CartArr.splice(index,1);
+   }
+     
      displayYourCart(CartArr);
 }
