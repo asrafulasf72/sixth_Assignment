@@ -71,7 +71,7 @@
                       
 
                <div class="grid col-span-8 md:grid-cols-12 gap-3 my-3">
-                  <div class="category-link md:col-span-2">
+                  <div class="category-link grid-cols-1 col-span-8 md:col-span-2">
                           <h2 class="text-[1.2rem] font-medium">Categories</h2>
                        <ul id="categories-container" class="my-1.5 flex flex-col gap-2" >
                           <li onclick="loadAllPlanttree()" class="hover:bg-green-400 rounded-[0.3rem] p-1.5 cursor-pointer active">All Trees</li>   
@@ -80,9 +80,9 @@
                       
                   <div id="card-container" class="col-span-8 grid grid-cols-1 md:grid-cols-3 gap-3">
                          <!-- Spinner -->
-                                <div id="Spinner" class="flex justify-center items-center my-2">
-                                       <span class="loading loading-dots loading-xl"></span>
-                                 </div>
+                               <div id="Spinner" class="flex justify-center items-center min-h-[200px]">
+                                      <span class="loading loading-dots loading-xl"></span>
+                               </div>
 
                   </div>
   

@@ -9,9 +9,9 @@ let CartArr= [];
 
 const manageSpinner=()=>{
      allPlanttreeContainer.innerHTML=`
-             <div id="Spinner" class="flex justify-center items-center my-2">
-                                        <span class="loading loading-dots loading-xl"></span>
-                                 </div>
+            <div id="Spinner" class="flex justify-center items-center min-h-[200px]">
+                   <span class="loading loading-dots loading-xl"></span>
+            </div
      
      `
 }
