@@ -2,7 +2,20 @@ const categoriesContainer=document.getElementById("categories-container")
 const allPlanttreeContainer=document.getElementById("card-container")
 const cartContainer=document.getElementById("cart-container")
 const totalPriceContainer = document.getElementById("total-Price-Container")
+const treeDetailsContainer = document.getElementById("tree-details-container")
 let CartArr= [];
+
+/*Manage Spiner Here */
+
+const manageSpinner=(status)=>{
+   if(status== true){
+      document.getElementById("Spinner").classList.remove("invisible")
+      document.getElementById("card-container").classList.add("invisible")
+   }else{
+       document.getElementById("card-container").classList.remove("invisible")
+      document.getElementById("Spinner").classList.add("invisible")
+   }
+}
 
 const loadaCategoriesContainer= async()=>{
        const url='https://openapi.programming-hero.com/api/categories'
@@ -54,8 +67,8 @@ const displayAllPlantsTree=(plants)=>{
                              <img class=" w-full h-[186px] rounded-t-[6px]" src="${plant.image}" alt="">
                           </div>
                           <div class="px-4">
-                              <h2 class="text-2xl font-bold">${plant.name}</h2>
-                              <p class="text-[1rem] font-medium">This all Product description given by me so that i can the real card design...</p>
+                              <h2 onclick="modalHandler(${plant.id})" class="text-2xl font-bold">${plant.name}</h2>
+                              <p class="text-[1rem] font-medium line-clamp-3">${plant.description}</p>
                           </div>
                           <div class=" flex justify-between px-4">
                              <button class="bg-green-200 rounded-[6px] p-1">${plant.category}</button>
@@ -71,6 +84,7 @@ const displayAllPlantsTree=(plants)=>{
 }
 
 const loadTreeCategorieById=(Categoryid)=>{
+   
      const url=`https://openapi.programming-hero.com/api/category/${Categoryid}`
      fetch(url)
      .then((res)=>res.json())
@@ -88,13 +102,13 @@ const loadTreeCategory =(plantsId)=>{
    allPlanttreeContainer.innerHTML=""
    plantsId.forEach(plantId=>{
       allPlanttreeContainer.innerHTML+=`
-             <div class=" bg-white rounded-[6px] space-y-3 shadow-sm">
+             <div class=" bg-white rounded-[6px] space-y-3 shadow-sm h-[410px]">
                           <div class="">
                              <img class=" w-full h-[186px] rounded-t-[6px]" src="${plantId.image}" alt="">
                           </div>
                           <div class="px-4">
-                              <div><h2 class="text-2xl font-bold">${plantId.name}</h2></div>
-                              <p class="text-[1rem] font-medium">${plantId.description}</p>
+                              <div><h2 onclick="modalHandler(${plantId.id})" class="text-2xl font-bold ">${plantId.name}</h2></div>
+                              <p class="text-[1rem] font-medium line-clamp-3">${plantId.description}</p>
                           </div>
                           <div class=" flex justify-between px-4">
                              <button class="bg-green-200 rounded-[6px] p-1">${plantId.category}</button>
@@ -114,7 +128,7 @@ const loadTreeCategory =(plantsId)=>{
 
 allPlanttreeContainer.addEventListener('click', (e) => {
     if (e.target.innerText == "Add to cart") {
-        console.log(e.target.parentNode.parentNode.parentNode)
+
         yourCartHandler(e)
     }
 });
@@ -178,4 +192,26 @@ const removeYourCart=(index)=>{
    }
      
      displayYourCart(CartArr);
+}
+
+const modalHandler= async(id)=>{
+     const url=`https://openapi.programming-hero.com/api/plant/${id}`
+     const res = await fetch(url)
+     const details = await res.json()
+     displayDetailsTree(details.plants)
+}
+
+const displayDetailsTree =(treeDetails)=>{
+      treeDetailsContainer.innerHTML=`
+          <div class="space-y-3">
+               <h1 class="text-2xl font-bold">${treeDetails.name}</h1>
+               <img class="w-[100%] h-60 p-4 rounded-2xl" src="${treeDetails.image}" alt="">
+               <h2 class="text-xl font-bold">Category: ${treeDetails.category}</h2>
+               <p> <span class="text-xl font-bold"> Price: </span> <i class="fa-solid fa-bangladeshi-taka-sign font-light"></i>${treeDetails.price}</p>
+               <p> <span class="text-xl font-bold">Description:</span> ${treeDetails.description}</p>
+          </div>
+      
+      `
+     
+      document.getElementById("my_modal_5").showModal();
 }
