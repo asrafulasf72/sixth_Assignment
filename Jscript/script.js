@@ -7,14 +7,21 @@ let CartArr= [];
 
 /*Manage Spiner Here */
 
-const manageSpinner=(status)=>{
-   if(status== true){
-      document.getElementById("Spinner").classList.remove("invisible")
-      document.getElementById("card-container").classList.add("invisible")
-   }else{
-       document.getElementById("card-container").classList.remove("invisible")
-      document.getElementById("Spinner").classList.add("invisible")
-   }
+const manageSpinner=()=>{
+     allPlanttreeContainer.innerHTML=`
+             <div id="Spinner" class="flex justify-center items-center my-2">
+                                        <span class="loading loading-dots loading-xl"></span>
+                                 </div>
+     
+     `
+}
+
+const showError =()=>{
+    allPlanttreeContainer.innerHTML=`
+       <div class="bg-sky-200 font-medium text-xl p-3 rounded-2xl h-30 flex justify-center items-center">
+             <p class="text-center"> Somthing Want Wrong Please Check your Network Connection Or Click Again</P>
+       </div>
+    `
 }
 
 const loadaCategoriesContainer= async()=>{
@@ -42,6 +49,7 @@ const DispalyCategories=(categories)=>{
            li.classList.remove('active')
         })
           if(e.target.localName ==='li'){
+            manageSpinner()
              e.target.classList.add('active')
              loadTreeCategorieById(e.target.id)
           }
@@ -94,7 +102,7 @@ const loadTreeCategorieById=(Categoryid)=>{
 
      })
      .catch(err=>{
-        console.log(err)
+        showError()
      })
 }
 
