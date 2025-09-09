@@ -18,7 +18,7 @@ const manageSpinner=()=>{
 
 const showError =()=>{
     allPlanttreeContainer.innerHTML=`
-       <div class="bg-sky-200 font-medium text-xl p-3 rounded-2xl h-30 flex justify-center items-center">
+       <div class="bg-sky-200 font-medium text-xl p-3 rounded-2xl h-30">
              <p class="text-center"> Somthing Want Wrong Please Check your Network Connection Or Click Again</P>
        </div>
     `
