@@ -39,7 +39,7 @@ loadaCategoriesContainer();
 const DispalyCategories=(categories)=>{
      categories.forEach(categorie=>{
         categoriesContainer.innerHTML+=`
-          <li id="${categorie.id}" class="hover:bg-green-400 rounded-[0.3rem] p-1.5 cursor-pointer ">${categorie.category_name}</li>
+          <li id="${categorie.id}" class="hover:bg-green-400 rounded-[0.3rem] p-1.5 cursor-pointer border-1 border-gray-200 shadow-md">${categorie.category_name}</li>
         `
      })
 
