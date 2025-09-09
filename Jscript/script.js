@@ -39,12 +39,12 @@ const loadAllPlanttree= async()=>{
   const res= await fetch(url)
   const data= await res.json();
   const allPlants=data.plants;
-   displayPlantsTree(allPlants);
+   displayAllPlantsTree(allPlants);
 };
 
 loadAllPlanttree();
 
-const displayPlantsTree=(plants)=>{
+const displayAllPlantsTree=(plants)=>{
    allPlanttreeContainer.innerHTML=""
       plants.forEach(plant =>{
         allPlanttreeContainer.innerHTML += `
@@ -113,12 +113,12 @@ const loadTreeCategory =(plantsId)=>{
 
 allPlanttreeContainer.addEventListener('click', (e) => {
     if (e.target.innerText == "Add to cart") {
+        console.log(e.target.parentNode.parentNode.parentNode)
         yourCartHandler(e)
     }
 });
 
 const yourCartHandler=(e)=>{
-    
        const cartName=e.target.parentNode.parentNode.children[1].children[0].innerText
         const cartPrice=e.target.parentNode.parentNode.children[2].children[1].innerText
 
@@ -133,16 +133,21 @@ const yourCartHandler=(e)=>{
 
 const displayYourCart=(CartArr)=>{
    cartContainer.innerHTML=""
-     CartArr.forEach(cart=>{
+     CartArr.forEach((cart, index)=>{
       cartContainer.innerHTML+=`
              <div class="bg-[#cff0dc] rounded-xl p-2 my-2 flex justify-between items-center">
                                 <div>
                                       <h1 class="text-[1rem] font-medium">${cart.name}</h1>
                                  <p><i class="fa-solid fa-bangladeshi-taka-sign font-light"></i>${cart.price}</p>
                                 </div>
-                                <button><i class="fa-solid fa-xmark"></i></button>
+                                <button onclick="removeYourCart(${index})"><i class="fa-solid fa-xmark"></i></button>
                              </div>
       
       `
      })
+}
+
+const removeYourCart=(index)=>{
+     CartArr.splice(index,1);
+     displayYourCart(CartArr);
 }
